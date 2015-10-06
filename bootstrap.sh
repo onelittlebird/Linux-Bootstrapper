@@ -35,6 +35,7 @@ function clean {
 
 	rm -rf Linux-Bootstrapper-master 2> /dev/null
 	rm master.tar.gz 2> /dev/null
+	echo -en "\n"
 }
 
 
