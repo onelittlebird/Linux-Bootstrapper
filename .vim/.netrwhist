@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/filip/git/klart/opt/klart/www/js'
+let g:netrw_dirhist_2='/home/filip/git/reseguiden/opt/klart/php'
+let g:netrw_dirhist_3='/home/filip/git/copy/.git'
+let g:netrw_dirhist_4='/home/filip/git/www/etc/mysql'
+let g:netrw_dirhist_5='/Users/filmob/repositories/klart/api/app/private_modules'
+let g:netrw_dirhist_6='/Users/filmob/repositories/klart/api/app/private_modules/weather'
