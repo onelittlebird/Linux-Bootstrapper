@@ -1,2 +1,3 @@
 # Linux-Bootstrapper
-Linux bootstrapper
+
+wget -qO - https://raw.githubusercontent.com/onelittlebird/Linux-Bootstrapper/master/bootstrap.sh | bash
