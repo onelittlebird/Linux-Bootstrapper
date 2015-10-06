@@ -45,24 +45,33 @@ if [ -z ${1+x} ]; then
 	echo -en "\n"
 
 else
+	echo -en "\n"
+	headline "DOWNLOADING FILES"
+	wget -q https://github.com/onelittlebird/Linux-Bootstrapper/archive/master.tar.gz
+	echo -en "\n"
+
+	echo -en "\n"
+	headline "UNPACKING FILES"
+	tar -xf master.tar.gz
+	echo -en "\n"
 
 	echo -en "\n"
 	ssh ${1} -T "find / -name .bashrc | awk '{print \"\033[1;31m[\033[1;33mUPDATING\033[1;31m]\033[0m [\"\$1\"\033[0m]\"}'"
 	ssh ${1} -T "find / -name .bashrc | xargs sed -i.bak s/PS1=/_PS1=/"
-	echo -en "\n"
 
+	echo -en "\n"
 	headline "INSTALLING"
 	echo "[Shell Profile]"
 	echo -en "\n"
-	scp /etc/profile ${1}:/etc
-	echo -en "\n"
+	scp Linux-Bootstrapper-master/etc/profile ${1}:/etc
 
+	echo -en "\n"
 	headline "INSTALLING"
 	echo "[Vim]"
 	echo -en "\n"
-	scp -r .vim* ${1}:
-	echo -en "\n"
+	scp -r Linux-Bootstrapper-master/.vim* ${1}:
 
+	echo -en "\n"
 	headline "INSTALLING"
 	echo "[Git]"
 	echo -en "\n"
@@ -70,6 +79,8 @@ else
 	echo -en "\n"
 
 	echo -en "\n"
+	rm -rf Linux-Bootstrapper-master
+	rm master.tar.gz
 	headline "COMPLETE"
 	echo -en "\n\n"
 fi
