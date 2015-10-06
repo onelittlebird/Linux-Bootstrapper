@@ -28,13 +28,13 @@ export RES="\033[0m"
 export TAB="\033[1m"
 
 
-set -e
+#set -e
 
 
 function clean {
 
-	rm -rf Linux-Bootstrapper-master
-	rm master.tar.gz
+	rm -rf Linux-Bootstrapper-master 2> /dev/null
+	rm master.tar.gz 2> /dev/null
 }
 
 
@@ -59,10 +59,10 @@ echo -en "${CDR}❯${RES}${CLR}❯${RES}${CLY}❯${RES} "
 read server
 
 
-if [ -z $server+x ]; then
+if [ -z "$server" ]; then
 
 	echo -en "\n"
-	headline "WARNING"
+	headline "ERROR"
 	echo "Invalid server adress"
 	echo -en "\n"
 
