@@ -27,17 +27,39 @@ export CDD="\033[0;30m"
 export RES="\033[0m"
 export TAB="\033[1m"
 
+
+set -e
+
+
+function clean {
+
+	rm -rf Linux-Bootstrapper-master
+	rm master.tar.gz
+}
+
+
+trap clean EXIT
+
+
 function headline() {
 
 	echo -en "${CLR}[${CLY}${1}${CLR}]${RES} "
 }
+
 
 function text() {
 
 	echo -en "${CLY}${1}${CLR}"
 }
 
-if [ -z ${1+x} ]; then
+
+echo -en "\n"
+headline "ENTER SERVER ADRESS"
+echo -en "${CDR}❯${RES}${CLR}❯${RES}${CLY}❯${RES} "
+read server
+
+
+if [ -z $server+x ]; then
 
 	echo -en "\n"
 	headline "WARNING"
@@ -56,31 +78,29 @@ else
 	echo -en "\n"
 
 	echo -en "\n"
-	ssh ${1} -T "find / -name .bashrc | awk '{print \"\033[1;31m[\033[1;33mUPDATING\033[1;31m]\033[0m [\"\$1\"\033[0m]\"}'"
-	ssh ${1} -T "find / -name .bashrc | xargs sed -i.bak s/PS1=/_PS1=/"
+	ssh $server -T "find / -name .bashrc | awk '{print \"\033[1;31m[\033[1;33mUPDATING\033[1;31m]\033[0m [\"\$1\"\033[0m]\"}'"
+	ssh $server -T "find / -name .bashrc | xargs sed -i.bak s/PS1=/_PS1=/"
 
 	echo -en "\n"
 	headline "INSTALLING"
 	echo "[Shell Profile]"
 	echo -en "\n"
-	scp Linux-Bootstrapper-master/etc/profile ${1}:/etc
+	scp Linux-Bootstrapper-master/etc/profile $server:/etc
 
 	echo -en "\n"
 	headline "INSTALLING"
 	echo "[Vim]"
 	echo -en "\n"
-	scp -r Linux-Bootstrapper-master/.vim* ${1}:
+	scp -r Linux-Bootstrapper-master/.vim* $server:
 
 	echo -en "\n"
 	headline "INSTALLING"
 	echo "[Git]"
 	echo -en "\n"
-	ssh ${1} -T "apt-get -y install git"
+	ssh $server -T "apt-get -y install git"
 	echo -en "\n"
 
 	echo -en "\n"
-	rm -rf Linux-Bootstrapper-master
-	rm master.tar.gz
 	headline "COMPLETE"
 	echo -en "\n\n"
 fi
