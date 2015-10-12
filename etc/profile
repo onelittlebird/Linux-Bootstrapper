@@ -73,7 +73,6 @@ alias l='ls $LS_OPTIONS -l'
 alias du='du -sh'
 alias gst='git status -s'
 alias gdi='git diff'
-alias gulp='gulp --silent'
 
 
 # SED Search & Replace
