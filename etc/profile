@@ -66,12 +66,19 @@ TAB="\033[1m"
 export LS_OPTIONS='--color=auto --group-directories-first'
 
 
-# System aliases
+# Aliases
 alias vim='vim -p'
 alias ll='ls $LS_OPTIONS -lA'
 alias l='ls $LS_OPTIONS -l'
+alias du='du -sh'
+alias gst='git status'
+alias gdi='git diff'
+alias gulp='gulp --silent'
 
 
+# SED Search & Replace
+# - sedrep {search_string} {replace_string} {path}
+# - sedrep --dry {search_string} {replace_string} {path}
 function sedrep() {
 
         if [ "${1}" == "--dry" ]; then
@@ -109,6 +116,8 @@ function sedrep() {
         fi
 }
 
+
+# System colors
 function colors() {
 
 	echo -en "\n${CLB}█ ${CLG}█ ${CLC}█ ${CLR}█ ${CLP}█ ${CLY}█ ${CLL}█ ${CLD}█ \n"
@@ -116,13 +125,16 @@ function colors() {
 }
 
 
+# Linux Bootstrapper
+function bootstrap() {
+
+	bash <(wget -qO - https://raw.githubusercontent.com/onelittlebird/Linux-Bootstrapper/master/bootstrap.sh)
+}
+
+
 # Prompt
 export PS1="${CLR}[${CLY}\[\h${CLR}] [\[\e[${CLY}${TAB}\]\u${RES}${CLR}]\[\] ${CLR}[${CLY}${TAB}\w${RES}${CLR}]${CDR}\$(__git_ps1) ${TAB}${CDR}❯${RES}${CLR}❯${RES}${CLY}❯${RES} "
 #export PS1="${CLG}[${CLY}\[\h${CLG}] [\[\e[${CLY}${TAB}\]\u${RES}${CLG}]\[\] ${CLG}[${CLY}${TAB}\w${RES}${CLG}]${CDG}\$(__git_ps1) ${TAB}${CDG}❯${RES}${CLG}❯${RES}${CLY}❯${RES} "
-
-alias gst='git status'
-alias gdi='git diff'
-alias gulp='gulp --silent'
 
 
 umask 022
