@@ -132,6 +132,13 @@ function bootstrap() {
 }
 
 
+# Make Gulp always be silent
+function gulp() {
+
+        /usr/bin/gulp $@ --silent
+}
+
+
 # Prompt
 export PS1="${CLR}[${CLY}\[\h${CLR}] [\[\e[${CLY}${TAB}\]\u${RES}${CLR}]\[\] ${CLR}[${CLY}${TAB}\w${RES}${CLR}]${CDR}\$(__git_ps1) ${TAB}${CDR}❯${RES}${CLR}❯${RES}${CLY}❯${RES} "
 #export PS1="${CLG}[${CLY}\[\h${CLG}] [\[\e[${CLY}${TAB}\]\u${RES}${CLG}]\[\] ${CLG}[${CLY}${TAB}\w${RES}${CLG}]${CDG}\$(__git_ps1) ${TAB}${CDG}❯${RES}${CLG}❯${RES}${CLY}❯${RES} "
