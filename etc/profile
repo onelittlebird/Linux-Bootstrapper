@@ -71,7 +71,7 @@ alias vim='vim -p'
 alias ll='ls $LS_OPTIONS -lA'
 alias l='ls $LS_OPTIONS -l'
 alias du='du -sh'
-alias gst='git status'
+alias gst='git status -s'
 alias gdi='git diff'
 alias gulp='gulp --silent'
 
@@ -142,7 +142,7 @@ function gulp() {
 # Open git status modified files in vim + argument files
 function gvim() {
 
-	vim $(git status -s|grep "^ M"|tr -d "^ M "|tr "\n" " ") $@
+	vim $(git status -s|grep -i -e "^ M" -e "^A" -e "^??"|tr -d "^ M "|tr -d "^A  "|tr -d "?? "|tr "\n" " ") $@
 }
 
 
